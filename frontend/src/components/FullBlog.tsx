@@ -12,7 +12,7 @@ export const FullBlog = ({ blog }: { blog: Post }) => {
           <div className="col-span-8 space-y-4">
             <h1 className="text-5xl font-extrabold">{blog.title}</h1>
             <div className="text-sm font-extralight text-slate-800">
-              Posted on 18th December 2024
+              Posted on 18th December 2024{blog.createdAt}
             </div>
             <div className="text-gray-700 prose">{blog.content}</div>
           </div>

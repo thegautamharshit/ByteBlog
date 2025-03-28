@@ -1,12 +1,13 @@
-import { Avatar } from "./BlogCard"
-import { Link } from "react-router-dom"
+import { Avatar } from "./BlogCard";
+import { Link } from "react-router-dom";
+import byteblog from '../assets/byteblog.png'
 
 export const Appbar = () => {
     return (
       <div className="border-b flex justify-between px-10 py-2 items-center">
         {/* Left Section */}
         <div className="cursor-pointer text-xl font-bold">
-          <Link to={'/blogs'}>ByteBlog</Link>
+          <Link to={'/blogs'}><img className="img" src={byteblog} /></Link>
         </div>
   
         {/* Right Section */}

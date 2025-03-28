@@ -22,12 +22,13 @@ export const Blogs = () =>{
             <div className="flex justify-center">
             <div className="w-9/12">
                 {posts.map(post => (
-                    <BlogCard 
+                    <BlogCard
+                    key={post.id} 
                     id = {post.id}
                     authorName = {post.author.name}
                     title = {post.title}
                     content = {post.content}
-                    publishedDate = {"2nd Feb 2025"}
+                    createdAt = {post.createdAt}
                 />
                 ))}
                 

@@ -42,7 +42,7 @@ export const Auth = ({type}:{type: "signup" | "signin"}) => {
                 <LabelledInput label="Email" placeholder="thegautamharshit@gmail.com" onChange={(e)=>{
                     setpostInputs({
                         ...postInputs,
-                        email:e.target.value
+                        email:e.target.value.toLowerCase()
                     })
                 }} />
                 <LabelledInput label="Password" type="password" placeholder="#0123@abc?/" onChange={(e)=>{

@@ -96,7 +96,8 @@ blogRouter.get('/bulk', async (c)=>{
                 select:{
                     name: true
                 }
-            }
+            },
+            createdAt:true
         }
     });
     return c.json({
@@ -124,7 +125,8 @@ blogRouter.get('/:id', async (c)=>{
                     select:{
                         name:true
                     }
-                }
+                },
+                createdAt:true
             }
         })
 

@@ -5,7 +5,7 @@ interface BlogCardProps {
     authorName: string;
     title: string;
     content: string;
-    publishedDate: string;
+    createdAt: string;
 }
 
 export const BlogCard = ({
@@ -13,7 +13,7 @@ export const BlogCard = ({
     authorName,
     title,
     content,
-    publishedDate
+    createdAt
 }:BlogCardProps) =>{
     return <Link to={`/blog/${id}`}>
         <div className="border-b border-slate-200 pb-4 p-4 cursor-pointer hover:bg-amber-100 hover:rounded-xl">
@@ -28,7 +28,7 @@ export const BlogCard = ({
                     <p>.</p>
                 </div>
                 <div className="pl-2 font-thin text-slate-700">
-                    {publishedDate}
+                    {createdAt}
                 </div>
             </div>
             <div className="pt-3 font-bold text-xl">

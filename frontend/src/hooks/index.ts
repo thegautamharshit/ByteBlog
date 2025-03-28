@@ -9,6 +9,7 @@ export interface Post{
     "author": {
         "name": string
     }
+    "createdAt" : string
 }
 
 export const useBlog = ({ id }: { id : string }) =>{ 
