@@ -12,7 +12,7 @@ export const FullBlog = ({ blog }: { blog: Post }) => {
           <div className="col-span-8 space-y-4">
             <h1 className="text-5xl font-extrabold">{blog.title}</h1>
             <div className="text-sm font-extralight text-slate-800">
-              Posted on 18th December 2024{blog.createdAt}
+              {formatDate(blog.createdAt)}
             </div>
             <div className="text-gray-700 prose">{blog.content}</div>
           </div>
@@ -34,3 +34,27 @@ export const FullBlog = ({ blog }: { blog: Post }) => {
       </div>
     );
   };
+
+// Add this date formatting utility function
+const formatDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const options: Intl.DateTimeFormatOptions = { 
+    day: 'numeric', 
+    month: 'long', 
+    year: 'numeric' 
+  };
+  
+  // Add ordinal suffix (st, nd, rd, th)
+  const day = date.getDate();
+  const nth = (d: number) => {
+    if (d > 3 && d < 21) return 'th';
+    switch (d % 10) {
+      case 1:  return "st";
+      case 2:  return "nd";
+      case 3:  return "rd";
+      default: return "th";
+    }
+  };
+
+  return `Posted on ${day}${nth(day)} ${date.toLocaleDateString('en-US', options)}`;
+};
