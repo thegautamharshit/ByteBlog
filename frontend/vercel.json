@@ -1,4 +1,11 @@
 {
+    "redirects": [
+      {
+        "source": "/",
+        "destination": "/signin",
+        "permanent": false
+      }
+    ],
     "rewrites": [
       {
         "source": "/(.*)",
@@ -6,3 +13,4 @@
       }
     ]
   }
+  
