@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.16",
-    "@thegautamharshit/blog-common": "^1.0.3",
+    "@thegautamharshit/blog-common": "^1.0.5",
     "axios": "^1.8.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
