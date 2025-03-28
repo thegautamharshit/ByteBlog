@@ -13,6 +13,7 @@
     "@tailwindcss/vite": "^4.0.16",
     "@thegautamharshit/blog-common": "^1.0.5",
     "axios": "^1.8.4",
+    "draft-js": "^0.11.7",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.4.0",

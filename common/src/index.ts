@@ -27,7 +27,7 @@ export const signInSchema = z.object({
 //Post Input Schema
 export const postSchema = z.object({
     title: z.string(),
-    content: z.string()
+    content: z.string(z.any())
 })
 
 

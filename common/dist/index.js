@@ -30,7 +30,7 @@ exports.signInSchema = zod_1.default.object({
 //Post Input Schema
 exports.postSchema = zod_1.default.object({
     title: zod_1.default.string(),
-    content: zod_1.default.string()
+    content: zod_1.default.string(zod_1.default.any())
 });
 //Update Post Schema
 exports.updatePostSchema = zod_1.default.object({
