@@ -1,5 +1,6 @@
 import z from "zod";
 export declare const registerSchema: z.ZodEffects<z.ZodObject<{
+    name: z.ZodOptional<z.ZodString>;
     email: z.ZodString;
     password: z.ZodString;
     confirmPassword: z.ZodString;
@@ -7,18 +8,22 @@ export declare const registerSchema: z.ZodEffects<z.ZodObject<{
     email: string;
     password: string;
     confirmPassword: string;
+    name?: string | undefined;
 }, {
     email: string;
     password: string;
     confirmPassword: string;
+    name?: string | undefined;
 }>, {
     email: string;
     password: string;
     confirmPassword: string;
+    name?: string | undefined;
 }, {
     email: string;
     password: string;
     confirmPassword: string;
+    name?: string | undefined;
 }>;
 export declare const signInSchema: z.ZodObject<{
     email: z.ZodString;

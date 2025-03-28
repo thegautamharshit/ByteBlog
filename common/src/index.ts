@@ -2,6 +2,7 @@ import z from "zod";
 
 //Signup Input Schema
 export const registerSchema = z.object({
+    name: z.string().optional(),
     email: z.string().email().min(1, { message: 'Email is Required' }),
     password: z.string().min(6, { message: 'Password is Required' }),
     confirmPassword: z

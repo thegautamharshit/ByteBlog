@@ -1,6 +1,6 @@
 {
   "name": "@thegautamharshit/blog-common",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "It contains Zod Schema for Blog Application",
   "main": "dist/index.js",
   "scripts": {

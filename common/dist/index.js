@@ -7,6 +7,7 @@ exports.updatePostSchema = exports.postSchema = exports.signInSchema = exports.r
 const zod_1 = __importDefault(require("zod"));
 //Signup Input Schema
 exports.registerSchema = zod_1.default.object({
+    name: zod_1.default.string().optional(),
     email: zod_1.default.string().email().min(1, { message: 'Email is Required' }),
     password: zod_1.default.string().min(6, { message: 'Password is Required' }),
     confirmPassword: zod_1.default
