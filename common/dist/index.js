@@ -29,12 +29,18 @@ exports.signInSchema = zod_1.default.object({
 });
 //Post Input Schema
 exports.postSchema = zod_1.default.object({
-    title: zod_1.default.string(),
-    content: zod_1.default.string(zod_1.default.any())
+    title: zod_1.default.string().min(1),
+    content: zod_1.default.object({
+        type: zod_1.default.literal('doc'),
+        content: zod_1.default.array(zod_1.default.unknown())
+    }),
 });
 //Update Post Schema
 exports.updatePostSchema = zod_1.default.object({
     title: zod_1.default.string(),
-    content: zod_1.default.string(),
+    content: zod_1.default.object({
+        type: zod_1.default.literal('doc'),
+        content: zod_1.default.array(zod_1.default.unknown())
+    }),
     id: zod_1.default.number()
 });

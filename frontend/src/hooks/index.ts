@@ -3,7 +3,7 @@ import axios from "axios";
 import { BACKEND_URL } from "../config";
 
 export interface Post{
-    "content" : string;
+    "content" : Record<string, any>
     "title" : string;
     "id" : string;
     "author": {

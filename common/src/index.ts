@@ -26,15 +26,21 @@ export const signInSchema = z.object({
 
 //Post Input Schema
 export const postSchema = z.object({
-    title: z.string(),
-    content: z.string(z.any())
+    title: z.string().min(1),
+    content: z.object({
+      type:z.literal('doc'),
+      content:z.array(z.unknown())
+    }),
 })
 
 
 //Update Post Schema
 export const updatePostSchema = z.object({
     title: z.string(),
-    content: z.string(),
+    content: z.object({
+      type:z.literal('doc'),
+      content:z.array(z.unknown())
+    }),
     id: z.number()
 })
 

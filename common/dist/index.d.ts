@@ -37,25 +37,55 @@ export declare const signInSchema: z.ZodObject<{
 }>;
 export declare const postSchema: z.ZodObject<{
     title: z.ZodString;
-    content: z.ZodString;
+    content: z.ZodObject<{
+        type: z.ZodLiteral<"doc">;
+        content: z.ZodArray<z.ZodUnknown, "many">;
+    }, "strip", z.ZodTypeAny, {
+        type: "doc";
+        content: unknown[];
+    }, {
+        type: "doc";
+        content: unknown[];
+    }>;
 }, "strip", z.ZodTypeAny, {
     title: string;
-    content: string;
+    content: {
+        type: "doc";
+        content: unknown[];
+    };
 }, {
     title: string;
-    content: string;
+    content: {
+        type: "doc";
+        content: unknown[];
+    };
 }>;
 export declare const updatePostSchema: z.ZodObject<{
     title: z.ZodString;
-    content: z.ZodString;
+    content: z.ZodObject<{
+        type: z.ZodLiteral<"doc">;
+        content: z.ZodArray<z.ZodUnknown, "many">;
+    }, "strip", z.ZodTypeAny, {
+        type: "doc";
+        content: unknown[];
+    }, {
+        type: "doc";
+        content: unknown[];
+    }>;
     id: z.ZodNumber;
 }, "strip", z.ZodTypeAny, {
     title: string;
-    content: string;
+    content: {
+        type: "doc";
+        content: unknown[];
+    };
     id: number;
 }, {
     title: string;
-    content: string;
+    content: {
+        type: "doc";
+        content: unknown[];
+    };
     id: number;
 }>;
 export type registerSchema = z.infer<typeof registerSchema>;

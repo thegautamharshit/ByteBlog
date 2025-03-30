@@ -7,7 +7,7 @@
   "dependencies": {
     "@prisma/client": "^6.5.0",
     "@prisma/extension-accelerate": "^1.3.0",
-    "@thegautamharshit/blog-common": "^1.0.5",
+    "@thegautamharshit/blog-common": "^1.0.7",
     "hono": "^4.7.5",
     "miniflare": "^4.20250321.1",
     "prisma": "^6.5.0",

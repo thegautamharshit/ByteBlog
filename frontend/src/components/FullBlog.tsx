@@ -1,7 +1,7 @@
 import { Post } from "../hooks"
+import { ReadOnlyEditor } from "../Tiptap";
 import { Appbar } from "./Appbar"
 import { Avatar } from "./BlogCard"
-
 
 export const FullBlog = ({ blog }: { blog: Post }) => {
     return (
@@ -14,7 +14,9 @@ export const FullBlog = ({ blog }: { blog: Post }) => {
             <div className="text-sm font-extralight text-slate-800">
               {formatDate(blog.createdAt)}
             </div>
-            <div className="text-gray-700 prose">{blog.content}</div>
+            <div className="text-gray-700 prose">
+              <ReadOnlyEditor content={blog.content} />
+            </div>
           </div>
   
           {/* Author Section */}
