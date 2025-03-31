@@ -3,6 +3,7 @@ import { Auth } from "../components/Auth_SignIn"
 
 
 export const Signin = () => {
+
     return <div>
         <div className="grid grid-cols-1 lg:grid-cols-2">
             <div>
@@ -11,7 +12,6 @@ export const Signin = () => {
             <div className="invisible lg:visible">
                 <Quote />
             </div>
-        
         </div>
     </div>
 }

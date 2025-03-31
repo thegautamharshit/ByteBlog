@@ -1,12 +1,10 @@
 import { Post } from "../hooks"
 import { ReadOnlyEditor } from "../Tiptap";
-import { Appbar } from "./Appbar"
 import { Avatar } from "./BlogCard"
 
 export const FullBlog = ({ blog }: { blog: Post }) => {
     return (
       <div>
-        <Appbar />
         <div className="grid grid-cols-12 px-10 pt-12 max-w-screen-3xl gap-8">
           {/* Main Content */}
           <div className="col-span-8 space-y-4">

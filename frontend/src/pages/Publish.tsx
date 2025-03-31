@@ -1,6 +1,5 @@
 import { useRef, useState } from "react"
 import axios from "axios"
-import { Appbar } from "../components/Appbar"
 import { BACKEND_URL } from "../config"
 import { useNavigate } from "react-router-dom"
 import Tiptap from "../Tiptap"
@@ -52,9 +51,6 @@ export const Publish = () => {
 
   return (
     <div>
-      <div>
-        <Appbar />
-      </div>
       <div className="flex justify-center pt-10 ">
         <input
           onChange={(e) => setTitle(e.target.value)}

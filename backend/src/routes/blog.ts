@@ -9,9 +9,10 @@ export const blogRouter = new Hono<{Bindings:{
     },
     Variables:{
         userId: string
+        userName: string
+        userEmail: string
     }
 }>();
-
 
 //Middleware
 blogRouter.use("/*", async (c,next) => {
@@ -28,6 +29,19 @@ blogRouter.use("/*", async (c,next) => {
             return c.json({Error:"UnAuthorized"})
         }
         c.set("userId",payload.id);
+        const prisma = new PrismaClient({
+            datasourceUrl: c.env.DATABASE_URL,
+        }).$extends(withAccelerate())
+        const user = await prisma.user.findUnique({
+            where:{id:payload.id},
+            select:{name :true, email:true}
+        })
+        if(!user){
+            c.status(403);
+            return c.json({Error: "User not found"})
+        }
+        c.set("userName", user.name ?? "Unknown User");
+        c.set("userEmail", user.email);
         await next();
     }catch(e){
         c.status(403)
@@ -44,7 +58,9 @@ blogRouter.post('/', async (c) => {
     }).$extends(withAccelerate())
     
     const body = await c.req.json();
-    const userId = c.get("userId")
+    const userId = c.get("userId");
+    const userName = c.get("userName");
+    const userEmail = c.get("userEmail")
 
     const post = await prisma.post.create({
         data:{
@@ -104,6 +120,17 @@ blogRouter.get('/bulk', async (c)=>{
         posts
     })
 })
+
+//BLOG GET USER
+blogRouter.get('/user', async (c)=>{
+    const userName = c.get("userName")
+    const userEmail = c.get("userEmail")
+
+    return c.json({
+        userName,
+        userEmail
+    });
+});
 
 //BLOG GET
 blogRouter.get('/:id', async (c)=>{

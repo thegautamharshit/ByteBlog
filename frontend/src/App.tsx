@@ -4,6 +4,8 @@ import {Signin} from './pages/Signin';
 import {Blog} from './pages/Blog';
 import {Blogs} from "./pages/Blogs";
 import { Publish } from "./pages/Publish";
+import { ProtectedRoute } from "./components/protectedRoute";
+import { Appbar } from "./components/Appbar";
 
 function App(){
 
@@ -13,11 +15,19 @@ function App(){
         <Routes>
           <Route path="/" element = {<Navigate to ="/signin" />} />
 
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/signin" element={<Signin />} />
-          <Route path="/blog/:id" element={<Blog />} />
-          <Route path="/blogs" element={<Blogs />} />
-          <Route path="/publish" element={<Publish />} />
+          <Route path="/signup" element={<><Appbar /><Signup /></>} />
+          <Route path="/signin" element={<><Appbar /><Signin /></>} />
+
+
+          <Route path="/blog/:id" element={
+            <ProtectedRoute>
+              <>
+                <Appbar />
+                <Blog />
+              </>
+            </ProtectedRoute>} />
+          <Route path="/blogs" element={<ProtectedRoute><><Appbar /><Blogs /></></ProtectedRoute>} />
+          <Route path="/publish" element={<ProtectedRoute><><Appbar /><Publish /></></ProtectedRoute>} />
         </Routes>
       </BrowserRouter>
     </>

@@ -1,17 +1,22 @@
-import { Avatar } from "./BlogCard";
+
 import { Link } from "react-router-dom";
 import byteblog from '../assets/byteblog.png'
+import { Notification } from "./Notification";
+import { AvatarNameButton } from "./AvatarNameButton";
 
 export const Appbar = () => {
     return (
       <div className="border-b flex justify-between px-10 py-2 items-center">
         {/* Left Section */}
         <div className="cursor-pointer text-xl font-bold">
-          <Link to={'/blogs'}><img className="img" src={byteblog} /></Link>
+          <Link to={'/blogs'}><img className="-mt-1 -mb-4" src={byteblog} /></Link>
         </div>
   
         {/* Right Section */}
         <div className="flex items-center gap-4">
+          <div className="-mb-2">
+            <Notification />
+          </div>
           {/* Post Button */}
           <Link to={'/publish'}>
             <button 
@@ -25,7 +30,7 @@ export const Appbar = () => {
           </Link>
   
           {/* Avatar */}
-          <Avatar name="Harshit" className="w-10 h-10" />
+          <AvatarNameButton/>
         </div>
       </div>
     );

@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BACKEND_URL } from "../config";
 
+export interface User {
+    userName: string;
+    userEmail: string;
+}
+
 export interface Post{
-    "content" : Record<string, any>
+    "content" : any
     "title" : string;
     "id" : string;
     "author": {
@@ -61,3 +66,31 @@ export const useBlogs = () =>{
         posts
     }
 }
+
+export const useUser = () =>{
+    const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(()=>{
+        axios.get(`${BACKEND_URL}/api/v1/blog/user`,{
+            headers:{
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+        })
+        .then((response) => {
+            setUser(response.data);
+            setLoading(false);
+        })
+        .catch((error)=>{
+            console.error("Error fetching user info", error);
+            setLoading(false);
+        })
+        .finally(()=>{
+            setLoading(false)
+        })
+
+    },[]);
+
+    return {user, loading};
+}
+
