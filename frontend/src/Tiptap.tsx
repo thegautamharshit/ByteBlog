@@ -2,6 +2,7 @@ import { useImperativeHandle, forwardRef } from 'react'
 import './Tiptap.css'
 
 import Highlight from '@tiptap/extension-highlight'
+import Focus from '@tiptap/extension-focus'
 import { Color } from '@tiptap/extension-color'
 import TextAlign from '@tiptap/extension-text-align'
 import Placeholder from '@tiptap/extension-placeholder'
@@ -34,6 +35,10 @@ export const ReadOnlyEditor = ({ content }: any) => {
       }),
       TextAlign.configure({ types: ['heading', 'paragraph'] }),
       Highlight,
+      Focus.configure({
+        className: 'has-focus',
+        mode: 'all',
+      }),
       Placeholder.configure({
         placeholder: "Tell Your Story ..."
       }),
@@ -42,6 +47,7 @@ export const ReadOnlyEditor = ({ content }: any) => {
       TextStyle.configure({}),
       Color.configure({ types: [TextStyle.name, ListItem.name] })
     ],
+    autofocus: true,
     content,
     editable: false,
   })

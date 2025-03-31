@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useUser } from "../hooks";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 export const AvatarNameButton = () => {
   const { user, loading} = useUser();
@@ -8,15 +8,25 @@ export const AvatarNameButton = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  const navigate = useNavigate();
+
   const isAuthPage =
     location.pathname === "/signin" || location.pathname === "/signup";
 
-  const displayName =
-    isAuthPage
-      ? location.pathname === "/signin"
-        ? "Sign In"
-        : "Sign Up"
-      : loading ? <div className="text-slate-400 font-thin">User Name</div> : user?.userName;
+    const displayName = isAuthPage ? (
+        <button
+          onClick={() => {
+            navigate(location.pathname === "/signin" ? "/signup" : "/signin");
+          }}
+          className="hover:underline font-medium"
+        >
+          {location.pathname === "/signin" ? "Sign Up" : "Sign In"}
+        </button>
+      ) : loading ? (
+        <div className="text-slate-400 font-thin">User Name</div>
+      ) : (
+        user?.userName
+      );
 
   const toggleDropdown = () => {
     setDropdownOpen((prev) => !prev);
@@ -53,7 +63,7 @@ export const AvatarNameButton = () => {
           alt="user photo"
         />
         <div className="text-base text-slate-700 font-normal">{displayName}</div>
-        <svg
+        <div>{isAuthPage ? "" : <div><svg
           className="w-2.5 h-2.5 ms-3"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
@@ -67,7 +77,7 @@ export const AvatarNameButton = () => {
             strokeWidth="2"
             d="m1 1 4 4 4-4"
           />
-        </svg>
+        </svg></div> }</div>
       </button>
 
       {/* Dropdown Menu: Absolutely positioned */}
@@ -77,8 +87,9 @@ export const AvatarNameButton = () => {
           dropdownOpen ? "block" : "hidden"
         }`}
       >
+        <div>{isAuthPage ? <div></div> : <div>
         <div className="px-4 py-3 text-sm text-gray-900">
-          <div className="font-medium">Pro User</div>
+          <div className="font-medium">{isAuthPage ? "" : `Pro User`}</div>
           <div className="truncate">{!user ? "" : user.userEmail}</div>
         </div>
         <ul
@@ -95,20 +106,19 @@ export const AvatarNameButton = () => {
               Settings
             </a>
           </li>
-          <li>
-            <a href="#" className="block px-4 py-2 hover:bg-gray-100">
-              Earnings
-            </a>
-          </li>
         </ul>
         <div className="py-2">
-          <a
+          <a onClick={() => {
+            localStorage.clear();
+            navigate("/signin")
+          }}
             href="#"
             className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
           >
             Sign out
           </a>
-        </div>
+        </div></div> }</div>
+
       </div>
     </div>
   );
