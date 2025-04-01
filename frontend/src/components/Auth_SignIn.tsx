@@ -7,12 +7,14 @@ import { BACKEND_URL } from "../config";
 
 export const Auth = ({type}:{type: "signup" | "signin"}) => {
     const navigate = useNavigate();
+    const [isLoading, setIsLoading] = useState(false);
     const [postInputs, setpostInputs] = useState<signInSchema>({
         email:"",
         password: ""
     });
 
     async function sendRequest(){
+        setIsLoading(true);
         try{
             const response = await axios.post(`${BACKEND_URL}/api/v1/user/signin`, postInputs);
             const jwt = response.data.jwt; 
@@ -21,6 +23,8 @@ export const Auth = ({type}:{type: "signup" | "signin"}) => {
         }catch (e){
             alert("Error while Signing Up");
             console.error("Signup error:", e);
+        }finally{
+            setIsLoading(false)
         }
     }   
 
@@ -52,7 +56,7 @@ export const Auth = ({type}:{type: "signup" | "signin"}) => {
                     })
                 }}/>
                 <div className="pt-10">
-                    <button onClick={sendRequest} type="button" className="w-full text-white bg-gray-800 hover:bg-gray-900 font-medium text-sm py-2.5 mb-2 rounded-md">{type === "signup" ? "Sign Up" : "Sign In"}</button>
+                    <button onClick={sendRequest} type="button" className={`w-full text-white bg-gray-800 hover:bg-gray-900 font-medium text-sm py-2.5 mb-2 rounded-md ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}>{isLoading ? "Signing In" : "Sign In"}</button>
                 </div>
             </div>
         </div>
