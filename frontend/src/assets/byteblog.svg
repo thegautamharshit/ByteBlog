@@ -1,0 +1,46 @@
+<svg width="400" height="150" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+  <!-- Centering the entire logo group in the SVG canvas -->
+  <g transform="translate(200,75)">
+    <!-- Application Name: centered horizontally -->
+    <text x="0" y="-15" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="40" fill="#222222">
+      ByteBlog
+    </text>
+    
+    <!-- Decorative Underline with 8 Boxes (each representing a bit)
+         Total width of boxes is 195px (8 boxes of 20px + 7 gaps of 5px).
+         Translate the group by -97.5 to center it relative to the group center. -->
+    <g transform="translate(-97.5,5)">
+      <!-- Box 1 -->
+      <rect x="0" y="0" width="20" height="20" fill="#333333" />
+      <text x="10" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">1</text>
+      
+      <!-- Box 2 -->
+      <rect x="25" y="0" width="20" height="20" fill="#444444" />
+      <text x="35" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">0</text>
+      
+      <!-- Box 3 -->
+      <rect x="50" y="0" width="20" height="20" fill="#333333" />
+      <text x="60" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">1</text>
+      
+      <!-- Box 4 -->
+      <rect x="75" y="0" width="20" height="20" fill="#444444" />
+      <text x="85" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">0</text>
+      
+      <!-- Box 5 -->
+      <rect x="100" y="0" width="20" height="20" fill="#333333" />
+      <text x="110" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">1</text>
+      
+      <!-- Box 6 -->
+      <rect x="125" y="0" width="20" height="20" fill="#444444" />
+      <text x="135" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">0</text>
+      
+      <!-- Box 7 -->
+      <rect x="150" y="0" width="20" height="20" fill="#333333" />
+      <text x="160" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">1</text>
+      
+      <!-- Box 8 -->
+      <rect x="175" y="0" width="20" height="20" fill="#444444" />
+      <text x="185" y="15" text-anchor="middle" font-family="monospace" font-size="12" fill="#FFFFFF">0</text>
+    </g>
+  </g>
+</svg>
