@@ -57,11 +57,12 @@ export const AvatarNameButton = () => {
         type="button"
       >
         <span className="sr-only">Open user menu</span>
-        <img
+        {isAuthPage ? "" :<img
           className="w-10 h-10 me-2 rounded-full"
           src="https://2.gravatar.com/avatar/fbdb83669414980fbb989e57de50bd11d369a972d3534e942ebaee787fc41927?size=256"
           alt="user photo"
-        />
+        /> }
+        
         <div className="text-base text-slate-700 font-normal">{displayName}</div>
         <div>{isAuthPage ? "" : <div><svg
           className="w-2.5 h-2.5 ms-3"

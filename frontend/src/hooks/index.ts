@@ -94,3 +94,34 @@ export const useUser = () =>{
     return {user, loading};
 }
 
+
+export const useDeletePost = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const deletePost = async (postId: string) => {
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const response = await axios.delete(`${BACKEND_URL}/api/v1/blog/${postId}`, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`,
+                },
+            });
+
+            if (response.status !== 200) {
+                throw new Error(response.data.message || "Failed to delete the post");
+            }
+
+            return true; // Indicate success
+        } catch (err: any) {
+            setError(err.response?.data?.message || err.message || "An error occurred");
+            return false; // Indicate failure
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    return { deletePost, isLoading, error };
+};

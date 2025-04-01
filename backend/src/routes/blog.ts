@@ -75,6 +75,62 @@ blogRouter.post('/', async (c) => {
     })
 })
 
+//BLOG DELETE
+blogRouter.delete('/:id', async (c) => {
+    const id = c.req.param("id"); // Get the post ID from the request parameters
+    const userId = c.get("userId"); // Get the authenticated user's ID from the context
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate());
+
+    try {
+        // Fetch the post to check if it exists and if the user is the owner
+        const post = await prisma.post.findUnique({
+            where: {
+                id: Number(id),
+            },
+            select: {
+                authorId: true, // Only fetch the authorId to verify ownership
+            },
+        });
+
+        // If the post does not exist, return a 404 error
+        if (!post) {
+            c.status(404);
+            return c.json({
+                message: "Post not found",
+            });
+        }
+
+        // If the authenticated user is not the owner, return a 403 error
+        if (post.authorId !== userId) {
+            c.status(403);
+            return c.json({
+                message: "You are not authorized to delete this post",
+            });
+        }
+
+        // Delete the post if the user is the owner
+        const deletedPost = await prisma.post.delete({
+            where: {
+                id: Number(id),
+            },
+        });
+
+        return c.json({
+            message: "Post deleted successfully",
+            deletedPost,
+        });
+    } catch (e) {
+        // Handle any unexpected errors
+        c.status(500);
+        return c.json({
+            message: "Error while deleting the blog post",
+        });
+    }
+});
+
+
 //BLOG PUT
 blogRouter.put('/', async (c)=>{
     const body = await c.req.json();
